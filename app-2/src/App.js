@@ -1,32 +1,32 @@
 import React, { Component } from 'react';
-import "./App.css";
+import './App.css'
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      hockey: [
-        "Sticks",
+      list: [
         "Pucks",
-        "Gloves",
-        "Helmets",
-        "Cones",
-        "Skates"
+        "Sticks",
+        "Bags",
+        "Skates",
+        "Laces",
+        "Cones"
       ]
     }
   }
-  render() {
-    let { hockey } = this.state;
-
-    let newHockey = hockey.map((stuff, i) => {
-      return <h2 key={i}>{stuff}</h2>
+  render(){
+    let { list } = this.state
+    let listHockey = list.map((item, i) => {
+      return <h2 key={i}>{item}</h2>
     })
-
-    return (
+    return(
       <div className="App">
-        {newHockey}
+          {listHockey}
       </div>
     )
   }
 }
+
+export default App

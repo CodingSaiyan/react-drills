@@ -1,47 +1,40 @@
-import React, {Component} from 'react';
-import "./App.css";
-import Todo from './Components/Todo';
+import React, { Component } from 'react';
+import './App.css';
+import Todo from './Todo/Todo';
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super()
 
-    this.state = {
+    this.state= {
       todos: [],
-      userInput: ""
+      input: ""
     }
   }
 
   handleChange(val) {
-    this.setState({ userInput: val})
+    this.setState({
+      input: val
+    })
   }
 
-  addTodo() {
-    let { todos, userInput } = this.state;
-
+  addTodo(todo) {
     this.setState({
-      todos: [...todos, userInput],
-      userInput: ""
+      todos: [...this.state.todos, todo],
+      input: ""
     })
-
   }
 
   render() {
-    let List = this.state.todos.map((item, i) => {
-      return <Todo key={i} todo={item} />
-    })
+    let { input, todos } = this.state;
     return (
       <div className="App">
-      <h1>MY Todo List App</h1>
-      <div>
-          <input type="text" value={this.state.userInput} onChange={(e) => this.handleChange(e.target.value)}></input>
-          <button onClick={() => this.addTodo(this.state.userInput)}>Add a new todo</button>
- 
+        <input type="text" value={input} onChange={(e) => {this.handleChange(e.target.value)}} />
+        <button onClick={() => {this.addTodo(input)}}>Add a todo</button>
+        <Todo list={todos} />
       </div>
-<br />
-
-{ List }
-</div>
     )
   }
 }
+
+export default App;

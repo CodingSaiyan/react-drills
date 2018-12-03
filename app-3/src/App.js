@@ -1,44 +1,47 @@
 import React, { Component } from 'react';
-import "./App.css";
+import './App.css';
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super()
 
-    this.state={
-      cars: [
-        "toyota",
-        "ford",
-        "nissan",
-        "ferrari",
-        "honda",
-        "hyundai"
-
+    this.state = {
+      hockey: [
+        "Pucks",
+        "Sticks",
+        "Skates",
+        "Jerseys",
+        "Bags",
+        "Helmets"
       ],
-      userInput: ""
+      input: ""
     }
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(val) {
-    this.setState({ userInput: val })
-  }
 
+  handleChange(e){
+    this.setState({
+      input: e.target.value
+    })
+  }
 
 
   render() {
-    let { cars, userInput } = this.state
-
-    let newCars = cars.filter((car, i) => {
-      return car.includes(userInput);
-    }).map((car, i) => {
-      return <h2 key={i}>{car}</h2>
+    let {hockey, input} = this.state
+    let displayHockey = hockey.filter((item) => {
+      return item.includes(input)
+    }).map((item, i) => {
+      return <h2 key={i}>{item}</h2>
     })
-
     return (
       <div className="App">
-          <input type="text" onChange={(e) => this.handleChange(e.target.value)}></input>
-          {newCars}
+          <input type="text" value={input} onChange={this.handleChange} />
+          {displayHockey}
       </div>
     )
   }
 }
+
+export default App;

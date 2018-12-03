@@ -1,18 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      list: []
+    }
+  }
+
+  componentDidMount() {
+    axios.get("https://swapi.co/api/planets").then(response => {
+      console.log(11111, response.data.results);
+      this.setState({
+        list: [...this.state.list, response.data.results]
+      })
+
+    }).catch(err => {console.log(`Error! Did not retrieve planet! ${err}`)})
+  }
+
   render() {
+    let { list } = this.state;
+    let display = list.map((obj, i) => {
+      return (
+        <div key={i}>
+        <h1>{obj.name}</h1>
+        <h2>{obj.rotation_period}</h2>
+        <h3>{obj.diameter}</h3>
+        </div>
+      )
+    })
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+          {display}
+          {console.log(222222, this.state.list)}
       </div>
     );
   }

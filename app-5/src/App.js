@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
-import "./App.css";
-import Image from './Components/Image';
+import './App.css';
+import Image from './Image/Image';
 
-export default class App extends Component {
+class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      ImgUrl: "https://github.com/DevMountain/react-drills/raw/assets/5.png"
+    }
+  }
   render() {
+    let { ImgUrl } = this.state
     return (
-      <div className="App">
-        <Image 
-        imageSrc = {"https://github.com/DevMountain/react-drills/raw/assets/5.png"}
-        />
+      <div>
+      <Image imgUrl={ImgUrl} />
       </div>
     )
   }
 }
+
+export default App

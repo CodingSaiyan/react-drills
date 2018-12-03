@@ -1,15 +1,16 @@
 import React from 'react';
-import Todo from "./Todo"
+import Todo from './Todo';
 
-export default function List(props) {
-    let list = props.tasks.map( (todo, i) => {
-        return (
-            <Todo key={i} task={todo} />
-        )
-    })
+export default function List( props ) {
+  let list = props.tasks.map( ( element, index ) => {
     return (
-        <div>
-            {list}
-        </div>
+      <Todo key={ index } task={ element } />
     )
+  })
+
+  return (
+    <div>
+      { list }
+    </div>
+  )
 }
